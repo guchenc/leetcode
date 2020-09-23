@@ -1,8 +1,8 @@
 /*
- * @Description: ÓĞĞ§µÄÀ¨ºÅ
+ * @Description: æœ‰æ•ˆçš„æ‹¬å·
  * @Author: guchen
  * @Date: 2020-09-21 16:09:23
- * @LastEditTime: 2020-09-21 16:10:07
+ * @LastEditTime: 2020-09-23 21:32:39
  */
 #include <iostream>
 #include <string>
@@ -11,7 +11,7 @@ using namespace std;
 
 class Solution {
 public:
-    // ÀûÓÃÕ»½øĞĞÀ¨ºÅÆ¥Åä time: O(n) space: O(n)
+    // åˆ©ç”¨æ ˆè¿›è¡Œæ‹¬å·åŒ¹é… time: O(n) space: O(n)
     bool isValid(string s) {
         stack<char> st;
         pair<char, char> pairs[3] = {{'(',')'}, {'[',']'}, {'{','}'} };

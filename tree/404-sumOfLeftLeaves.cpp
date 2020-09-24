@@ -1,8 +1,8 @@
 /*
- * @Description: ��Ҷ��֮��
+ * @Description: 锟斤拷叶锟斤拷之锟斤拷
  * @Author: guchen
  * @Date: 2020-09-19 15:20:05
- * @LastEditTime: 2020-09-19 16:12:16
+ * @LastEditTime: 2020-09-24 15:37:13
  */
 #include <iostream>
 #include <queue>
@@ -18,7 +18,7 @@ struct TreeNode {
 
 class Solution {
 public:
-    // ���� time: O(n) space: O(n)
+    // 锟斤拷锟斤拷 time: O(n) space: O(n)
     int sumOfLeftLeaves(TreeNode* root) {
         int sum = 0;
         queue<TreeNode*> q;
@@ -40,11 +40,11 @@ public:
         return sum;
     }
 
-    // ���� time: O(n) space: O(n)
+    // 锟斤拷锟斤拷 time: O(n) space: O(n)
     int sumOfLeftLeaves2(TreeNode* root) {
         int sum = 0;
         queue<TreeNode*> q;
-        set<TreeNode*> s;   // ����������ĸ�
+        set<TreeNode*> s;   // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷母锟�
         if (!root)
             return 0;
         q.push(root);
@@ -70,7 +70,7 @@ public:
     int dfs(TreeNode* root, bool isLeft) {
         if (!root)
             return 0;
-        if (isLeft && !root->left && !root->right)  // ֻ�еݹ鵽��Ҷ�ӽڵ�ʱ������ֵ����������ݹ鵽Ҷ�ڵ�󷵻�0
+        if (isLeft && !root->left && !root->right)  // 只锟叫递归到锟斤拷叶锟接节碉拷时锟斤拷锟斤拷锟斤拷值锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷莨榈揭讹拷诘锟襟返伙拷0
             return root->val;
         return dfs(root->left, true) + dfs(root->right, false);
     }

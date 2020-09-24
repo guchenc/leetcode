@@ -1,8 +1,8 @@
 /*
- * @Description: ¶ş²æÊ÷µÄÖĞĞò±éÀú
+ * @Description: äºŒå‰æ ‘çš„ä¸­åºéå†
  * @Author: guchen
  * @Date: 2020-09-12 15:59:08
- * @LastEditTime: 2020-09-21 15:33:49
+ * @LastEditTime: 2020-09-24 15:13:19
  */
 #include <iostream>
 #include <vector>
@@ -23,7 +23,7 @@ using namespace std;
  */
 class Solution {
 public:
-    // Morris±éÀú time: O(n) space: O(1)
+    // Morriséå† time: O(n) space: O(1)
     vector<int> inorderTraversal(TreeNode* root) {
         TreeNode* node, *cur;
         vector<int> ans;
@@ -31,25 +31,25 @@ public:
         while (cur != nullptr) {
             if (cur->left != nullptr) {
                 node = cur->left;
-                // ÕÒµ½µ±Ç°½ÚµãcurµÄ×ó×ÓÊ÷µÄ×îÓÒ½Úµã£¬¼´µ±Ç°½ÚµãÔÚÖĞĞò±éÀú½á¹ûÖĞµÄÇ°¼Ì½áµã
+                // æ‰¾åˆ°å½“å‰èŠ‚ç‚¹curçš„å·¦å­æ ‘çš„æœ€å³èŠ‚ç‚¹ï¼Œå³å½“å‰èŠ‚ç‚¹åœ¨ä¸­åºéå†ç»“æœä¸­çš„å‰ç»§ç»“ç‚¹
                 while (node->right != nullptr && node->right != cur)
                     node = node->right;
-                if (node->right == nullptr) {   // Ê¹µ±Ç°½Úµã×îÓÒ½ÚµãµÄÓÒÖ¸ÕëÖ¸Ïòµ±Ç°½Úµã
+                if (node->right == nullptr) {   // ä½¿å½“å‰èŠ‚ç‚¹æœ€å³èŠ‚ç‚¹çš„å³æŒ‡é’ˆæŒ‡å‘å½“å‰èŠ‚ç‚¹
                     node->right = cur;
                     cur = cur->left;
                 } else {
-                    node->right = nullptr;  // »Ö¸´µ±Ç°½ÚµãµÚÒ»´Î×÷ÎªcurÊ±ÉèÖÃµÄ×îÓÒ½ÚµãµÄÓÒ×Ó½ÚµãÎª¿Õ
-                    ans.push_back(cur->val);
+                    node->right = nullptr;  // æ¢å¤å½“å‰èŠ‚ç‚¹ç¬¬ä¸€æ¬¡ä½œä¸ºcuræ—¶è®¾ç½®çš„æœ€å³èŠ‚ç‚¹çš„å³å­èŠ‚ç‚¹ä¸ºç©º
+                    ans.push_back(cur->val);    // è¾“å‡ºéå¶å­èŠ‚ç‚¹
                     cur = cur->right;
                 }
             } else {
-                ans.push_back(cur->val);
-                cur = cur->right;
+                ans.push_back(cur->val);    // è¾“å‡ºå¶å­èŠ‚ç‚¹
+                cur = cur->right;   // å°†curç½®ä¸ºå…¶ä¸­åºéå†ä¸­çš„åç»§èŠ‚ç‚¹
             }
         }
         return ans;
     }
-    // µü´ú time: O(n) space: O(n)
+    // è¿­ä»£ time: O(n) space: O(n)
     vector<int> inorderTraversal1(TreeNode* root) {
         vector<int> res;
         stack<TreeNode*> s;

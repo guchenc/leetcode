@@ -2,7 +2,7 @@
  * @Description: 颜色分类
  * @Author: guchen
  * @Date: 2020-10-07 17:54:41
- * @LastEditTime: 2020-10-07 17:55:17
+ * @LastEditTime: 2020-10-09 17:29:32
  */
 #include <vector>
 #include <iostream>
@@ -27,9 +27,9 @@ public:
                 i++;
                 rp++;
             } else if (nums[i] == 1) {
-                i++;
+                i++;    // 遇到1直接继续考察下一元素，0 1 2的顺序由rp和bp维护，1的位置会借助rp bp交换到正确位置
             } else {
-                swap(nums[i], nums[bp]);
+                swap(nums[i], nums[bp]);    // 当前元素为2,和bp位置交换后，i位置仍然可能是2,如果直接
                 bp--;
             }
         }

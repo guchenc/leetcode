@@ -2,7 +2,7 @@
  * @Description: 长度最小的子数组
  * @Author: guchen
  * @Date: 2020-10-08 21:36:47
- * @LastEditTime: 2020-10-08 21:37:29
+ * @LastEditTime: 2020-10-10 18:20:16
  */
 #include <vector>
 #include <iostream>
@@ -11,11 +11,26 @@ using namespace std;
 
 class Solution {
 public:
+    // 滑动窗口简化版
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int ws = 0, we = 0, sum = 0, minlen = 0;
+        while (we < nums.size()) {
+            sum += nums[we];
+            while (sum >= s) {
+                if (minlen == 0) minlen = we - ws + 1;
+                else minlen = min(minlen, we - ws + 1);
+                sum -= nums[ws++];
+            }
+            we++;
+        }
+        return minlen;
+    }
+
     // 滑动窗口 (直接使用下标) time: O(n) space: O(1)
     int minSubArrayLen(int s, vector<int>& nums) {
         int ws = 0, we = 0, sum = 0;
         int minlen = 0;
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < nums.size(); i++) { // 其实i是和we一直保持一致的
             sum += nums[i];
             while (sum >= s) {
                 if (minlen == 0) minlen = we - ws + 1;

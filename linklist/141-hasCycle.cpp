@@ -1,8 +1,8 @@
 /*
- * @Description: »·ĞÎÁ´±í
+ * @Description: ç¯å½¢é“¾è¡¨
  * @Author: guchen
  * @Date: 2020-09-20 19:04:19
- * @LastEditTime: 2020-09-20 19:05:07
+ * @LastEditTime: 2020-10-10 15:57:13
  */
 #include <iostream>
 #include <string>
@@ -18,7 +18,7 @@ struct ListNode {
 
 class Solution {
 public:
-    // ÀûÓÃset£¬±éÀúÁ´±í£¬¶ÔÓÚÃ¿Ò»¸ö½Úµã£¬ÏÈ´ÓsetÖĞ²éÕÒÆäÊÇ·ñ´æÔÚ£¬Èô´æÔÚÔòËµÃ÷´æÔÚ»·£¬·µ»Øtrue
+    // åˆ©ç”¨setï¼Œéå†é“¾è¡¨ï¼Œå¯¹äºæ¯ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå…ˆä»setä¸­æŸ¥æ‰¾å…¶æ˜¯å¦å­˜åœ¨ï¼Œè‹¥å­˜åœ¨åˆ™è¯´æ˜å­˜åœ¨ç¯ï¼Œè¿”å›true
     // time: O(n) space: O(n)
     bool hasCycle(ListNode *head) {
         set<ListNode*> s;
@@ -33,9 +33,9 @@ public:
         return false;
     }
 
-    // ×îÓÅ½â-¿ìÂıÖ¸Õë(ÓÅÑÅ°æ) time: O(n) space: O(1)
-    // Èô²»´æÔÚ»·£¬¿ìÖ¸Õë±ØÏÈµ½´ïÁ´±íÎ²²¿£¬·µ»Øfalse
-    // Èô´æÔÚ»·£¬¿ìÖ¸Õë×îÖÕ½«×·ÉÏÂıÖ¸Õë£¬·µ»Øtrue
+    // æœ€ä¼˜è§£-å¿«æ…¢æŒ‡é’ˆ(ä¼˜é›…ç‰ˆ) time: O(n) space: O(1)
+    // è‹¥ä¸å­˜åœ¨ç¯ï¼Œå¿«æŒ‡é’ˆå¿…å…ˆåˆ°è¾¾é“¾è¡¨å°¾éƒ¨ï¼Œè¿”å›false
+    // è‹¥å­˜åœ¨ç¯ï¼Œå¿«æŒ‡é’ˆæœ€ç»ˆå°†è¿½ä¸Šæ…¢æŒ‡é’ˆï¼Œè¿”å›true
     bool hasCycle2(ListNode *head) {
         ListNode* fast = head->next, *low = head;
         while (fast != low) {
@@ -46,18 +46,18 @@ public:
         }
         return true;
     }
-    // ¿ìÂıÖ¸Õë time: O(n)  space: O(1)
+    // å¿«æ…¢æŒ‡é’ˆ time: O(n)  space: O(1)
     bool hasCycle1(ListNode *head) {
         if (head == nullptr)
             return false;
         ListNode* fast = head->next, *low = head;
         while (fast != nullptr) {
-            if (fast == low)    // Èô´æÔÚ»·£¬¿ìÖ¸Õë±Ø½«×·µ½ÂıÖ¸Õë£¬´ËÊ±·µ»Øtrue
+            if (fast == low)    // è‹¥å­˜åœ¨ç¯ï¼Œå¿«æŒ‡é’ˆå¿…å°†è¿½åˆ°æ…¢æŒ‡é’ˆï¼Œæ­¤æ—¶è¿”å›true
                 return true;
             if (fast->next == nullptr)
                 return false;
-            fast = fast->next->next;    // ¿ìÖ¸ÕëÒ»´Î×ß2²½
-            low = low->next;    // ÂıÖ¸ÕëÒ»´Î×ß1²½
+            fast = fast->next->next;    // å¿«æŒ‡é’ˆä¸€æ¬¡èµ°2æ­¥
+            low = low->next;    // æ…¢æŒ‡é’ˆä¸€æ¬¡èµ°1æ­¥
         }
         return false;
     }

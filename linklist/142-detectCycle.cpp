@@ -1,8 +1,8 @@
 /*
- * @Description: »·ÐÎÁ´±íII
+ * @Description: çŽ¯å½¢é“¾è¡¨II
  * @Author: guchen
  * @Date: 2020-09-20 19:45:52
- * @LastEditTime: 2020-09-20 19:46:32
+ * @LastEditTime: 2020-10-10 16:12:18
  */
 
 #include <iostream>
@@ -18,20 +18,20 @@ struct ListNode {
 
 class Solution {
 public:
-    // ¿ìÂýÖ¸Õë time: O(n) space: O(1)
+    // å¿«æ…¢æŒ‡é’ˆ time: O(n) space: O(1)
     ListNode *detectCycle(ListNode *head) {
         if (head == nullptr || head->next == nullptr)
             return nullptr;
         ListNode* fast = head, *low = head;
-        int flag = 1;   // ×î¿ªÊ¼fast = low£¬Ê¹Ñ­»·Ìõ¼þ³ÉÁ¢
+        int flag = 1;   // æœ€å¼€å§‹fast = lowï¼Œä½¿å¾ªçŽ¯æ¡ä»¶æˆç«‹
         while (flag || fast != low) {
             flag= 0;
-            if (fast == nullptr || fast->next == nullptr)    // ÎÞ»·
+            if (fast == nullptr || fast->next == nullptr)    // æ— çŽ¯
                 return nullptr;
             fast = fast->next->next;
             low = low->next;
         }
-        // ÓÐ»·£¬¾Ý·ÖÎöµ±¿ìÂýÖ¸ÕëÏàÓöÊ±£¬ÂýÖ¸ÕëÔÙ×ßa²½(aÎªÁ´±íÊ×½Úµãµ½»·Èë¿ÚµÄ¾àÀë)¼´µ½´ï»·Èë¿Ú£¬ËìÁîdummy´ÓÁ´±íÊ×²¿ºÍlowÒ»Í¬ÒÆ¶¯£¬µ±low = dummyÊ±£¬¼´±íÃ÷low×ßÁËa²½£¬´ËÊ±lowºÍdummy¶¼Ö¸Ïò»·Èë¿Ú
+        // æœ‰çŽ¯ï¼Œæ®åˆ†æžå½“å¿«æ…¢æŒ‡é’ˆç›¸é‡æ—¶ï¼Œæ…¢æŒ‡é’ˆå†èµ°aæ­¥(aä¸ºé“¾è¡¨é¦–èŠ‚ç‚¹åˆ°çŽ¯å…¥å£çš„è·ç¦»)å³åˆ°è¾¾çŽ¯å…¥å£ï¼Œé‚ä»¤dummyä»Žé“¾è¡¨é¦–éƒ¨å’Œlowä¸€åŒç§»åŠ¨ï¼Œå½“low = dummyæ—¶ï¼Œå³è¡¨æ˜Žlowèµ°äº†aæ­¥ï¼Œæ­¤æ—¶lowå’Œdummyéƒ½æŒ‡å‘çŽ¯å…¥å£
         ListNode* dummy = head;
         while (dummy != low) {
             // cout << dummy->val << " " << low->val << endl;

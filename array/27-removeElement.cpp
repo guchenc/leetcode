@@ -2,7 +2,7 @@
  * @Description: 移除元素
  * @Author: guchen
  * @Date: 2020-10-09 14:36:53
- * @LastEditTime: 2020-10-09 14:38:31
+ * @LastEditTime: 2020-10-13 09:37:06
  */
 #include <vector>
 #include <iostream>
@@ -10,7 +10,7 @@ using namespace std;
 
 class Solution {
 public:
-    // 双指针 每次遇到目标值，将该位置赋值为数组末尾的值，之后通过数组长度减一的方式逻辑抹去该值
+    // 双指针 每次遇到目标值，将该位置赋值为数组末尾的值，之后通过数组长度减一的方式逻辑抹去该值，但是会改变数组元素的顺序
     // time: O(n) space:(1)
     int removeElement(vector<int>& nums, int val) {
         int i = 0, len = nums.size();

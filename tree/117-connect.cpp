@@ -2,7 +2,7 @@
  * @Description: 填充每个节点的下一个右侧节点指针II
  * @Author: guchen
  * @Date: 2020-09-25 19:31:42
- * @LastEditTime: 2020-09-25 20:08:48
+ * @LastEditTime: 2020-10-15 15:24:57
  */
 #include <queue>
 #include <iostream>
@@ -25,6 +25,23 @@ public:
 
 class Solution {
 public:
+    // 优雅版迭代 同下
+    Node* connect(Node* root) {
+        Node* dummy = new Node(0), *cur, *tail;
+        dummy->next = root;
+        while (dummy->next != nullptr) {
+            cur = dummy->next;
+            dummy->next = nullptr;
+            tail = dummy;
+            while (cur != nullptr) {
+                if (cur->left != nullptr) tail = tail->next = cur->left;
+                if (cur->right != nullptr) tail = tail->next = cur->right;
+                cur = cur->next;
+            }
+        }
+        return root;
+    }
+    
     // 迭代(最优解)，处理当前层时，用dummy将下一层节点连接起来，当前层结束后，借助构造的下一层链表处理下一层
     // time: O(n) space: O(1)
     Node* connect(Node* root) {

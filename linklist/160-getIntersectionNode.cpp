@@ -1,8 +1,8 @@
 /*
- * @Description: Ïà½»Á´±í
+ * @Description: ç›¸äº¤é“¾è¡¨
  * @Author: guchen
  * @Date: 2020-09-21 19:11:45
- * @LastEditTime: 2020-09-21 19:12:56
+ * @LastEditTime: 2020-10-15 16:49:27
  */
 #include <iostream>
 #include <string>
@@ -18,10 +18,10 @@ struct ListNode {
 
 class Solution {
 public:
-    // Ë«Ö¸Õë time: O(n + m)  space: O(1)
-    // ÓÃÁ½¸öÖ¸Õë·Ö±ğ´ÓÁ½¸öÁ´±íÍ·²¿¿ªÊ¼±éÀú, µ±Á´A(B)Ö¸Õëµ½´ïÁ´Î²Ê±£¬ÁîÆäÖ¸ÏòÁ´B(A)Ê×²¿£¬¼ÌĞø±éÀúÖ±ÖÁÁ½ÕßÏàµÈ»òÕßË«Ë«Îªnull
-    // - ÈôÁ½Á´±íÏà½»£¬Á½¸öÖ¸ÕëÒ»¶¨»áÔÚÒÆ¶¯ÏàÍ¬²½Êı(AÁ´Í·³¤+BÁ´Í·³¤+Á½Á´ÖØºÏ²¿·Ö³¤¶È))ÏàµÈ
-    // - ÈôÁ½Á´±í²»Ïà½»£¬Á½¸öÖ¸ÕëÒ»¶¨»áÔÚÒÆ¶¯ÏàÍ¬²½Êı(AÁ´³¤+BÁ´³¤)ºóÍ¬Ê±Îªnull
+    // åŒæŒ‡é’ˆ time: O(n + m)  space: O(1)
+    // ç”¨ä¸¤ä¸ªæŒ‡é’ˆåˆ†åˆ«ä»ä¸¤ä¸ªé“¾è¡¨å¤´éƒ¨å¼€å§‹éå†, å½“é“¾A(B)æŒ‡é’ˆåˆ°è¾¾é“¾å°¾æ—¶ï¼Œä»¤å…¶æŒ‡å‘é“¾B(A)é¦–éƒ¨ï¼Œç»§ç»­éå†ç›´è‡³ä¸¤è€…ç›¸ç­‰æˆ–è€…åŒåŒä¸ºnull
+    // - è‹¥ä¸¤é“¾è¡¨ç›¸äº¤ï¼Œä¸¤ä¸ªæŒ‡é’ˆä¸€å®šä¼šåœ¨ç§»åŠ¨ç›¸åŒæ­¥æ•°(Aé“¾å¤´é•¿+Bé“¾å¤´é•¿+ä¸¤é“¾é‡åˆéƒ¨åˆ†é•¿åº¦))ç›¸ç­‰
+    // - è‹¥ä¸¤é“¾è¡¨ä¸ç›¸äº¤ï¼Œä¸¤ä¸ªæŒ‡é’ˆä¸€å®šä¼šåœ¨ç§»åŠ¨ç›¸åŒæ­¥æ•°(Aé“¾é•¿+Bé“¾é•¿)ååŒæ—¶ä¸ºnull
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode* pa = headA, *pb = headB;
         if (pa == nullptr || pb == nullptr)
@@ -32,7 +32,7 @@ public:
         }
         return pa;
     }
-    // ½èÖúset time: O(n + m) space: O(n) / O(m)
+    // å€ŸåŠ©set time: O(n + m) space: O(n) / O(m)
     ListNode *getIntersectionNode1(ListNode *headA, ListNode *headB) {
         ListNode* interp = nullptr;
         unordered_set<ListNode*> s;

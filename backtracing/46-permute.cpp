@@ -1,17 +1,38 @@
 /*
- * @Description: È«ÅÅÁĞ
+ * @Description: å…¨æ’åˆ—
  * @Author: guchen
  * @Date: 2020-09-18 20:20:49
- * @LastEditTime: 2020-09-18 20:21:46
+ * @LastEditTime: 2020-10-18 15:17:32
  */
-#include <iostream>
-#include <vector>
-using namespace std;
+#include "../alg.h"
 
 class Solution {
 public:
-    // dfs + »ØËİ time: O(n*n!) space: O(n*n!)
-    // »ØËİËã·¨µÄÊ±¼ä¸´ÔÓ¶ÈÊÇÖ¸Êı¼¶±ğµÄ£¬±¾ÖÊÉÏÊÇÒ»ÖÖ±éÀúµÄËã·¨
+    // dfs + å›æº¯ time: O(n*n!) space: O(n)
+    // å›æº¯ç®—æ³•çš„æ—¶é—´å¤æ‚åº¦æ˜¯æŒ‡æ•°çº§åˆ«çš„ï¼Œæœ¬è´¨ä¸Šæ˜¯ä¸€ç§éå†çš„ç®—æ³•
+    vector<vector<int>> res;
+    vector<int> ans;
+    vector<vector<int>> permute(vector<int>& nums) {
+        place(nums, 0);
+        return res;
+    }
+
+    void place(vector<int>& nums, int pos) {
+        if (pos == nums.size()) {
+            res.emplace_back(ans);
+            return;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == INT_MAX) continue;
+            int temp = nums[i];
+            ans.emplace_back(temp);
+            nums[i] = INT_MAX;
+            place(nums, pos + 1);
+            ans.pop_back();
+            nums[i] = temp;
+        }
+    }
+
     vector<vector<int>> permute(vector<int>& nums) {
         int len = nums.size();
         vector<vector<int>> ans;

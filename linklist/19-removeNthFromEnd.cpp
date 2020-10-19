@@ -2,7 +2,7 @@
  * @Description: 删除链表倒数第N个节点
  * @Author: guchen
  * @Date: 2020-10-15 17:25:54
- * @LastEditTime: 2020-10-15 17:29:57
+ * @LastEditTime: 2020-10-18 15:53:18
  */
 struct ListNode {
     int val;
@@ -33,16 +33,12 @@ public:
     // 快慢指针, 两者相距n + 1，slow指向要删除节点的前一个节点，fast指向要删除节点的后n个节点
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode* dummy = new ListNode(0, head), *slow = dummy, *fast = dummy;
-        while (n >= 0) {
-            fast = fast->next;
-            n--;
-        }
-        while (fast != nullptr) {
+        while (n-- > 0) fast = fast->next;
+        while (fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next;
         }
         slow->next = slow->next->next;
         return dummy->next;
     }
-
 };

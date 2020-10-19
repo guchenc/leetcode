@@ -1,8 +1,8 @@
 /*
- * @Description: Á½ÊıÏà¼Ó
+ * @Description: ä¸¤æ•°ç›¸åŠ 
  * @Author: guchen
  * @Date: 2020-09-17 18:50:47
- * @LastEditTime: 2020-09-17 23:11:19
+ * @LastEditTime: 2020-10-19 13:26:56
  */
 struct ListNode {
     int val;
@@ -12,11 +12,11 @@ struct ListNode {
 
 class Solution {
 public:
-    // ¿ÉÒÔÓÃ¸ÃËã·¨¼ÆËã·Ç¸º´óÕûÊıµÄ¼Ó·¨ÔËËã
+    // å¯ä»¥ç”¨è¯¥ç®—æ³•è®¡ç®—éè´Ÿå¤§æ•´æ•°çš„åŠ æ³•è¿ç®—
     // time: O(max(m,n)) space: O(max(m,n))
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         ListNode* n1 = l1, *n2 = l2, *dummy = new ListNode(-1), *tail = dummy;
-        int sum = 0;    // ¼ÇÂ¼ÉÏÒ»Î»½øÎ»Óëµ±Ç°ÔËËãÎ»ÊıµÄºÍ
+        int sum = 0;    // è®°å½•ä¸Šä¸€ä½è¿›ä½ä¸å½“å‰è¿ç®—ä½æ•°çš„å’Œ
         while (n1 != nullptr || n2 != nullptr || sum) {
             if (n1) sum += n1->val, n1 = n1->next;
             if (n2) sum += n2->val, n2 = n2->next;
@@ -26,7 +26,7 @@ public:
         }
         tail = dummy;
         dummy = dummy->next;
-        delete(tail);   // ÊÍ·ÅdummyµÄ¶Ñ¿Õ¼ä£¬±ÜÃâÄÚ´æĞ¹Â©
+        delete(tail);   // é‡Šæ”¾dummyçš„å †ç©ºé—´ï¼Œé¿å…å†…å­˜æ³„æ¼
         return dummy;
     }
 };

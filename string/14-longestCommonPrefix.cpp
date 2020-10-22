@@ -1,8 +1,8 @@
 /*
- * @Description: ×î³¤¹«¹²Ç°×º
+ * @Description: æœ€é•¿å…¬å…±å‰ç¼€
  * @Author: guchen
  * @Date: 2020-09-19 17:06:03
- * @LastEditTime: 2020-09-19 17:07:23
+ * @LastEditTime: 2020-10-22 16:00:23
  */
 #include <iostream>
 #include <vector>
@@ -11,8 +11,8 @@ using namespace std;
 
 class Solution {
 public:
-    // ½«×Ö·û´®Êı×é¿´×÷¶şÎ¬charÊı×é£¬ÖğÁĞ½øĞĞ±È½Ï£¬µ±Ä³ĞĞµ½Î²»òÕßÄ³ĞĞÏàÓ¦ÁĞ²»Æ¥Åä½áÊø
-    // time: O(minlen * n) minlenÎª×Ö·û´®Êı×éÖĞ×î¶ÌµÄ×Ö·û´®³¤¶È£¬nÎª×Ö·û´®Êı×é´óĞ¡ space: O(1)
+    // å°†å­—ç¬¦ä¸²æ•°ç»„çœ‹ä½œäºŒç»´charæ•°ç»„ï¼Œé€åˆ—è¿›è¡Œæ¯”è¾ƒï¼Œå½“æŸè¡Œåˆ°å°¾æˆ–è€…æŸè¡Œç›¸åº”åˆ—ä¸åŒ¹é…ç»“æŸ
+    // time: O(minlen * n) minlenä¸ºå­—ç¬¦ä¸²æ•°ç»„ä¸­æœ€çŸ­çš„å­—ç¬¦ä¸²é•¿åº¦ï¼Œnä¸ºå­—ç¬¦ä¸²æ•°ç»„å¤§å° space: O(1)
     string longestCommonPrefix(vector<string>& strs) {
         if (strs.empty())
             return "";
@@ -27,7 +27,7 @@ public:
         }
         return strs[0];
     }
-    // time: O(minlen * n) minlenÎª×Ö·û´®Êı×éÖĞ×î¶ÌµÄ×Ö·û´®³¤¶È£¬nÎª×Ö·û´®Êı×é´óĞ¡ space: O(1)
+    // time: O(minlen * n) minlenä¸ºå­—ç¬¦ä¸²æ•°ç»„ä¸­æœ€çŸ­çš„å­—ç¬¦ä¸²é•¿åº¦ï¼Œnä¸ºå­—ç¬¦ä¸²æ•°ç»„å¤§å° space: O(1)
     string longestCommonPrefix2(vector<string>& strs) {
         char cur;
         int index = 0;
@@ -36,19 +36,19 @@ public:
         if (strs.empty())
             return "";  
         for (auto s : strs) {
-            if (s.empty()) return "";   // ´æÔÚ¿Õ×Ö·û´®£¬Ö±½Ó·µ»ØÇ°×º""
-            if (s.size() < minlen)  // ÈôÎŞ¿Õ×Ö·û´®£¬¼ÇÂ¼×î¶Ì×Ö·û´®³¤¶È
+            if (s.empty()) return "";   // å­˜åœ¨ç©ºå­—ç¬¦ä¸²ï¼Œç›´æ¥è¿”å›å‰ç¼€""
+            if (s.size() < minlen)  // è‹¥æ— ç©ºå­—ç¬¦ä¸²ï¼Œè®°å½•æœ€çŸ­å­—ç¬¦ä¸²é•¿åº¦
                 minlen = s.size();
         }
 
         while (index < minlen) {
-            cur = strs[0][index];   // Ã¿´ÎÈ¡µÚÒ»¸ö×Ö·û´®µÄÏàÓ¦Î»ÖÃ½øĞĞ±È½Ï
+            cur = strs[0][index];   // æ¯æ¬¡å–ç¬¬ä¸€ä¸ªå­—ç¬¦ä¸²çš„ç›¸åº”ä½ç½®è¿›è¡Œæ¯”è¾ƒ
             for (auto s : strs) {
-                if (s[index] != cur)    // ´æÔÚstringÏàÓ¦Î»ÖÃ²»Í¬£¬·µ»ØÒÑÈ·¶¨µÄprefix
+                if (s[index] != cur)    // å­˜åœ¨stringç›¸åº”ä½ç½®ä¸åŒï¼Œè¿”å›å·²ç¡®å®šçš„prefix
                     return strs[0].substr(0, index);
             }
             index++;
-        } // ±íÃ÷×î¶ÌµÄ·Ç¿Õ×Ö·û´®¾ÍÊÇ¹«¹²Ç°×º
+        } // è¡¨æ˜æœ€çŸ­çš„éç©ºå­—ç¬¦ä¸²å°±æ˜¯å…¬å…±å‰ç¼€
         return strs[0].substr(0, index);
     }
 };

@@ -2,10 +2,9 @@
  * @Description: 对称二叉树
  * @Author: guchen
  * @Date: 2020-09-24 17:53:29
- * @LastEditTime: 2020-09-24 17:54:09
+ * @LastEditTime: 2020-10-22 15:55:51
  */
-#include <queue>
-using namespace std;
+#include "../alg.h"
 
 struct TreeNode {
     int val;
@@ -13,8 +12,51 @@ struct TreeNode {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
 class Solution {
 public:
+    bool isSymmetric(TreeNode* root) {
+        if (root == nullptr) return true;
+        queue<TreeNode*> q;
+        vector<int> vals;
+        q.push(root);
+        vals.push_back(root->val);
+        while (!q.empty()) {
+            int size = vals.size();
+            int l = 0, r = size - 1;
+            while (l < r) {
+                if (vals[l] != vals[r]) return false;
+                l++, r--;
+            }
+            vals.clear();
+            size = q.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode* temp = q.front(); q.pop();
+                if (temp->left != nullptr) {
+                    q.push(temp->left);
+                    vals.push_back(temp->left->val);
+                } else vals.push_back(INT_MAX);
+                if (temp->right != nullptr) {
+                    q.push(temp->right);
+                    vals.push_back(temp->right->val);
+                } else vals.push_back(INT_MAX);
+            }
+        }
+        return true;
+    }
+
+    bool isSymmetric1(TreeNode* root) {
+        if (root == nullptr) return true;
+        return symmetric(root->left, root->right);
+    }
+
+    bool symmetric(TreeNode* n1 ,TreeNode* n2) {
+        if (n1 == nullptr && n2 == nullptr) return true;
+        if (n1 == nullptr || n2 == nullptr) return false;
+        if (n1->val != n2->val) return false;
+        return symmetric(n1->left, n2->right) && symmetric(n1->right, n2->left);
+    }
+
     // 迭代 time: O(n) space: O(n)
     bool isSymmetric(TreeNode* root) { 
         queue<TreeNode*> q;

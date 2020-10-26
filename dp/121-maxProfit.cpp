@@ -2,11 +2,23 @@
  * @Description: 买卖股票的最佳时机
  * @Author: guchen
  * @Date: 2020-10-24 15:29:10
- * @LastEditTime: 2020-10-24 15:29:38
+ * @LastEditTime: 2020-10-26 15:56:58
  */
 #include "../alg.h"
 class Solution {
 public:
+    // DP + 状态压缩
+    int maxProfit(vector<int>& prices) {
+        if (prices.empty()) return 0;
+        int maxprofit = 0;
+        int minprice =  prices[0];
+        for (int i = 1; i < prices.size(); i++) {
+            minprice = min(minprice, prices[i]);
+            maxprofit = max(maxprofit, prices[i] - minprice);
+        }
+        return maxprofit;
+    }
+
     // DP
     // dp[i] [0, i]天的可以获得的最大利润
     // dp[i] = max(dp[i - 1], prices[i] - minprice)  (1 <= i < prices.size())

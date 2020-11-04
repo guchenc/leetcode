@@ -1,14 +1,51 @@
 /*
- * @Description: µ¥´ÊÆ¥Åä
+ * @Description: ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½
  * @Author: guchen
  * @Date: 2020-09-16 10:47:57
- * @LastEditTime: 2020-09-16 11:12:53
+ * @LastEditTime: 2020-11-03 20:30:47
  */
-#include <iostream>
-#include <vector>
-#include <string>
+#include "../alg.h"
 
-using namespace std;
+class Solution {
+public:
+    vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    bool exist(vector<vector<char>>& board, string word) {
+        int r = board.size(), c = board[0].size();
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (path_exist(board, word, i, j, 0)) return true;
+            }
+        }       
+        return false;
+    }
+
+    bool path_exist(vector<vector<char>>& board, string& word, int x, int y, int idx) {
+        // print(board, idx, x, y);
+        bool found = false;
+        if (idx == word.size() - 1 && board[x][y] == word[idx]) return true;
+        if (board[x][y] != word[idx]) return false;
+        char temp = board[x][y];
+        board[x][y] = '-';
+        for (auto& dir : dirs) {
+            int nx = x + dir.first, ny = y + dir.second;
+            if (nx < 0 || nx >= board.size() || ny < 0 || ny >= board[0].size() || board[nx][ny] == '-') continue;
+            found = path_exist(board, word, nx, ny, idx + 1);
+            if (found) return true;
+        }
+        board[x][y] = temp;
+        return false;
+    }
+
+    void print(vector<vector<char>>& board, int idx, int x, int y) {
+        cout << idx << "(" << x << ", " << y << ")" << endl;
+        for (auto& r : board) {
+            for (auto c : r) cout << c << " ";
+            cout << endl;
+        }
+        cout << "------------------------" << endl;
+    }
+
+};
 
 class Solution {
 public:

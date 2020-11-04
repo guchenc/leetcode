@@ -5,6 +5,36 @@
  * @LastEditTime: 2020-10-18 15:17:32
  */
 #include "../alg.h"
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> ans(nums.size());
+        generate(nums, res, ans, 0);      
+        return res;
+    }
+    
+    void generate(vector<int>& nums, vector<vector<int>>& res, vector<int>& ans, int idx) {
+        if (idx == nums.size()) {
+            res.push_back(ans);
+            return;
+        }
+        // cout << "idx: " << idx << ": ";
+        // for (auto n : nums) {
+        //     if (n == INT_MAX) cout << "- ";
+        //     else cout << n << " ";
+        // }  
+        // cout << endl;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == INT_MAX) continue;
+            int temp = nums[i];
+            ans[idx] = nums[i];
+            nums[i] = INT_MAX;
+            generate(nums, res, ans, idx + 1);
+            nums[i] = temp;
+        }
+    }
+};
 
 class Solution {
 public:

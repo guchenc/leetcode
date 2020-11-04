@@ -2,11 +2,31 @@
  * @Description: 合并区间
  * @Author: guchen
  * @Date: 2020-10-11 20:14:17
- * @LastEditTime: 2020-10-24 15:25:40
+ * @LastEditTime: 2020-11-04 19:29:27
  */
-#include <algorithm>
-#include <vector>
-using namespace std;
+#include "../alg.h"
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        if (intervals.empty()) return {};
+        vector<vector<int>> res;
+        sort(intervals.begin(), intervals.end());
+        int begin = intervals[0][0], end = intervals[0][1];
+        for (int i = 1; i < intervals.size(); i++) {
+            if (end < intervals[i][0]) {
+                res.push_back({begin, end});
+                begin = intervals[i][0];
+                end = intervals[i][1];
+            } else if (intervals[i][1] >= end) {
+                end = intervals[i][1];
+            }
+        }
+        res.push_back({begin, end});
+        return res;
+    }
+};
+
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {

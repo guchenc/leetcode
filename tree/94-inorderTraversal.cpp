@@ -2,7 +2,7 @@
  * @Description: 二叉树的中序遍历
  * @Author: guchen
  * @Date: 2020-10-28 20:44:32
- * @LastEditTime: 2020-10-28 20:44:57
+ * @LastEditTime: 2020-11-12 16:00:51
  */
 #include "../alg.h"
 
@@ -17,6 +17,28 @@ struct TreeNode {
 
 class Solution {
 public:
+    
+    // 新的迭代处理思路 
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> s;
+        push_leftmost(root, s);
+        while (!s.empty()) {
+            TreeNode* node = s.top(); s.pop();
+            res.push_back(node->val);
+            push_leftmost(node->right, s);
+        }
+        return res;
+    }
+
+    void push_leftmost(TreeNode* root, stack<TreeNode*>& s) {
+        while (root != nullptr) {
+            s.push(root);
+            root = root->left;
+        }
+    }
+
+
     // 复习
     vector<int> inorderTraversal(TreeNode* root) {
         TreeNode* cur = root;

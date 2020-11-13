@@ -2,7 +2,7 @@
  * @Description: 二叉树的最近公共祖先
  * @Author: guchen
  * @Date: 2020-09-25 21:10:06
- * @LastEditTime: 2020-09-25 22:49:55
+ * @LastEditTime: 2020-11-13 17:01:09
  */
 #include <iostream>
 #include <unordered_map>
@@ -14,6 +14,32 @@ struct TreeNode {
     TreeNode *left;
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        TreeNode* ancestor = nullptr;
+        existAtLeastOne(root, p, q, ancestor);       
+        return ancestor;
+    }
+
+    bool existAtLeastOne(TreeNode* root, TreeNode* p, TreeNode* q, TreeNode*& ancestor) {
+        if (root == nullptr) return false;
+        bool lf = existAtLeastOne(root->left, p, q, ancestor);
+        bool rf = existAtLeastOne(root->right, p, q, ancestor);
+        if ((lf && rf) || ((root == p || root == q) && (lf || rf))) ancestor = root;
+        return lf || rf || root == p || root == q;
+    }
 };
 
 class Solution {

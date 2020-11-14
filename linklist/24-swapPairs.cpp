@@ -2,7 +2,7 @@
  * @Description: 两两交换链表中的节点
  * @Author: guchen
  * @Date: 2020-10-13 09:17:19
- * @LastEditTime: 2020-10-13 09:18:45
+ * @LastEditTime: 2020-11-14 17:41:49
  */
 struct ListNode {
     int val;
@@ -21,6 +21,23 @@ public:
         head->next = swapPairs(p->next);    // 注意这种处理方式
         p->next = head;
         return p;
+    }
+
+   // 迭代 time: O(n) space: O(1)
+    ListNode* swapPairs1(ListNode* head) {
+        ListNode* dummy = new ListNode(0, head);
+        ListNode* prev = dummy, *cur = head;
+        while (cur != nullptr && cur->next != nullptr) {
+            ListNode* tmp = cur;
+            prev->next = cur->next;
+            cur->next = cur->next->next;
+            prev->next->next = tmp;
+            prev = cur;
+            cur = prev->next;
+        }
+        ListNode* res = dummy->next;
+        delete dummy;
+        return res; 
     }
 
     // 迭代 time: O(n) space: O(1)

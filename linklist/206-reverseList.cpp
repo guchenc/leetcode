@@ -2,7 +2,7 @@
  * @Description: 反转链表
  * @Author: guchen
  * @Date: 2020-09-17 17:24:39
- * @LastEditTime: 2020-10-16 10:22:04
+ * @LastEditTime: 2020-11-14 17:36:08
  */
 
 /**
@@ -24,6 +24,15 @@ struct ListNode {
 
 class Solution {
 public:
+    // 递归 优雅！ 核心思想是当前节点之后的所有节点已经逆序完毕，只需要将自身接到之后的已逆序链表即可
+    ListNode* reverseList(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) return head;
+        ListNode* nhead = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return nhead;
+    }
+
     // using recursion
     // time: O(n) space: O(1)
     ListNode* reverseList3(ListNode* head) {

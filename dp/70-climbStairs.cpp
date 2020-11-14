@@ -2,7 +2,7 @@
  * @Description: 爬楼梯
  * @Author: guchen
  * @Date: 2020-10-24 15:28:26
- * @LastEditTime: 2020-10-24 15:28:37
+ * @LastEditTime: 2020-11-14 17:35:27
  */
 #include "../alg.h"
 class Solution {
@@ -53,6 +53,20 @@ public:
         if (n == 2) return 2;
         return climbStairs(n - 1) + climbStairs(n - 2);
     }
+
+    int climbStairs(int n) {
+        vector<int> mem(n + 1, 0);
+        return climbOneStep(0, n, mem);
+    }
+    // 返回走了cnt步之后，后面还有多少中走法
+    int climbOneStep(int cnt, int n, vector<int>& mem) {
+        if (cnt > n) return 0;
+        if (cnt == n) return 1;
+        if (mem[cnt] > 0) return mem[cnt];
+        mem[cnt] = climbOneStep(cnt + 1, n, mem) + climbOneStep(cnt + 2, n, mem);
+        return mem[cnt];
+    }
+
 
     // 递归 超时
     // 每次攀爬有2种选择，递归树叶子节点为n时，表明攀爬路线符合要求

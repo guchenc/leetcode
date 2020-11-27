@@ -2,13 +2,73 @@
  * @Description: 三数之和
  * @Author: guchen
  * @Date: 2020-10-05 19:17:49
- * @LastEditTime: 2020-11-03 20:29:25
+ * @LastEditTime: 2020-11-27 22:51:44
  */
 #include <algorithm>
 #include <vector>
 #include <sstream>
 #include <iostream>
 using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> res;
+        int N = nums.size();
+        if (N < 3) return {};
+        sort(nums.begin(), nums.end()); // 方便判断与降重
+        for (int i = 0; i < N - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int l = i + 1, r = N - 1;
+            while (l < r) {
+                int twosum = nums[l] + nums[r];
+                if (nums[i] + twosum > 0) r--;
+                else if (nums[i] + twosum < 0) l++;
+                else {
+                    res.push_back({nums[i], nums[l], nums[r]});
+                    while (l < r && nums[l] == nums[l + 1]) l++;
+                    l++;
+                    while (r > l && nums[r] == nums[r - 1]) r--;
+                    r--;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        if (nums.size() < 3) return {};
+        vector<vector<int>> res;
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size() - 2; i++) {
+            // while (i < nums.size() - 2 && nums[i] == nums[i + 1]) i++; 注意这里不能取连续相等序列的最后一个作为第一个数字，-4 -1 [-1] 0 1 2, 会丢掉[-1, -1, 2]这个解
+            if (i > 0 && nums[i] == nums[i - 1]) continue;  // 只取连续相等序列的第一个作为第一个数字
+            twoSum(res, nums, i);
+        }
+        return res;
+    }
+
+    void twoSum(vector<vector<int>>& res, vector<int>& nums, int i) {
+        int l = i + 1, r = nums.size() - 1;
+        while (l < r) {
+            // while (l + 1 < r && nums[l] == nums[l + 1]) l++;    // 同样不能只取连续相等序列的最后一个作为第2/3个数字，理由同上
+            // while (r - 1 > l && nums[r] == nums[r - 1]) r--;
+            int tmp = nums[l] + nums[r];
+            if (nums[i] + tmp > 0) r--;
+            else if (nums[i] + tmp < 0) l++;
+            else {
+                res.push_back({nums[i], nums[l], nums[r]});
+                while (l + 1 < r && nums[l] == nums[l + 1]) l++;    // 只取连续相等序列的最后一个作为第2/3个数字
+                l++;
+                while (r - 1 > l && nums[r] == nums[r - 1]) r--;
+                r--;
+            }
+        }
+    }
+};
 
 class Solution {
 public:

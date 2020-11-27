@@ -2,13 +2,44 @@
  * @Description: 四数之和
  * @Author: guchen
  * @Date: 2020-10-05 20:52:40
- * @LastEditTime: 2020-10-05 21:13:44
+ * @LastEditTime: 2020-11-27 22:43:45
  */
-#include <algorithm>
-#include <vector>
-#include <sstream>
-#include <iostream>
-using namespace std;
+#include "../alg.h"
+
+class Solution {
+public:
+    // 关键点：先排序，之后按照四元组元素非递减查找所有满足条件的解，先确定第一个元素，再确定第二个元素，再确定剩下两个元素
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> res;
+        int N = nums.size();
+        if (N < 4) return res;
+        sort(nums.begin(), nums.end()); // 方便加速查找与降重
+        for (int i = 0; i < N - 3; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;  // 选取连续相等序列的第一个元素作为第一个数字
+            if (nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target) continue;   // 减枝
+            if (nums[i] + nums[N - 1] + nums[N - 2] + nums[N - 3] < target) continue;   // 减枝
+            for (int j = i + 1; j < N - 2; j++) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue;  // 选取连续相等序列的第一个元素作为第二个数字
+                if (nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target) continue;   // 减枝
+                if (nums[i] + nums[j] + nums[N - 1] + nums[N - 2] < target) continue;   // 减枝
+                int l = j + 1, r = N - 1;
+                while (l < r) {
+                    int twoSum = nums[l] + nums[r];
+                    if (nums[i] + nums[j] + twoSum > target) r--;
+                    else if (nums[i] + nums[j] + twoSum < target) l++;
+                    else {
+                        res.push_back({nums[i], nums[j], nums[l], nums[r]});
+                        while (l + 1 < r && nums[l] == nums[l + 1]) l++;
+                        l++;
+                        while (r - 1 > l && nums[r] == nums[r - 1]) r--;
+                        r--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
 
 class Solution {
 public:

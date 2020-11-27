@@ -2,14 +2,24 @@
  * @Description: 两数之和
  * @Author: guchen
  * @Date: 2020-09-16 12:50:00
- * @LastEditTime: 2020-09-16 15:14:37
+ * @LastEditTime: 2020-11-27 22:52:48
  */
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <unordered_map>
-using namespace std;
+#include "../alg.h"
+
+class Solution {
+public:
+    // time: O(n) space: O(n)
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> m;
+        for (int i = 0; i < nums.size(); i++) {
+            auto it = m.find(target - nums[i]);
+            if (it == m.end()) m[nums[i]] = i;
+            else return {it->second, i};
+        }
+        return {};
+    }
+};
+
 class Solution {
 public:
     // multimap unordered_multimap 都行，看内存消耗和查询效率

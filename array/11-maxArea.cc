@@ -2,14 +2,22 @@
  * @Description: 盛最多水的容器
  * @Author: guchen
  * @Date: 2020-09-21 16:29:22
- * @LastEditTime: 2020-09-21 16:29:52
+ * @LastEditTime: 2020-11-27 22:45:03
  */
-#include <iostream>
-#include <vector>
-using namespace std;
+#include "../alg.h"
 
 class Solution {
 public:
+    int maxArea(vector<int>& height) {
+        int l = 0, r = height.size() - 1;
+        int res = INT_MIN;
+        while (l < r) {
+            res = max(min(height[l], height[r]) * (r - l), res);
+            if (height[l] >= height[r]) r--;
+            else l++;
+        }
+        return res;
+    }
     // 双指针 time: O(n) space: O(1)
     int maxArea(vector<int>& height) {
         int len = height.size();

@@ -7,6 +7,51 @@
 #include "../alg.h"
 class Solution {
 public:
+    // time: O(logn) space: O(1)
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int l = 0, r = nums.size() - 1;
+        vector<int> res(2, -1);
+        res[0] = binary_search(nums, target, true);
+        res[1] = binary_search(nums, target, false);
+        return res;
+    }
+
+    int binary_search(vector<int>& nums, int target, bool flag) {
+        int l = 0, r = nums.size() - 1;
+        int pos = -1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (target > nums[m]) l++;
+            else if (target < nums[m]) r--;
+            else {
+                pos = m;
+                if (!flag) l++;
+                else r--;
+            }
+        }
+        return pos;
+    }
+
+    // time: O(logn) 最坏情况下为O(n) space: O(1)
+    vector<int> searchRange1(vector<int>& nums, int target) {
+        int l = 0, r = nums.size() - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] > target) r--;
+            else if (nums[m] < target) l++;
+            else {
+                l = r = m;
+                while (l - 1 >= 0 && nums[l - 1] == target) l--;
+                while (r + 1 < nums.size() && nums[r + 1] == target) r++;
+                return {l, r};
+            }
+        }
+        return {-1, -1};
+    }
+};
+
+class Solution {
+public:
     vector<int> searchRange(vector<int>& nums, int target) {
         int l = binarySearch(nums, target);
         int r = binarySearch(nums, target + 1);

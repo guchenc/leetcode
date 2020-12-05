@@ -2,11 +2,23 @@
  * @Description: 任务调度器
  * @Author: guchen
  * @Date: 2020-11-30 16:26:35
- * @LastEditTime: 2020-11-30 16:27:26
+ * @LastEditTime: 2020-12-05 18:12:54
  */
 #include "../alg.h"
 class Solution {
 public:
+    // 桶思想, time: O(nlogn) space: O(logn)
+    int leastInterval(vector<char>& tasks, int n) {
+        int len = tasks.size();
+        int count[26] = {0};
+        for(char t : tasks)
+            count[t - 'A']++;
+        sort(count, count + 26, greater<int>());
+        int cnt = 1;
+        while(cnt < 26 && count[cnt] == count[0]) cnt++;
+        return max(len, cnt + (n + 1) * (count[0] - 1));
+    }
+
     // 手动排序，这种方法没办法获得任务执行序列，因为在排序的过程中，计数下标和任务名已经不是一一对应的了
     int leastInterval(vector<char>& tasks, int n) {
         vector<int> count(26, 0);
